@@ -22,7 +22,7 @@ public class MergeSort_Code01 {
         if(L == R){
             return;
         }
-        int mid = L+(R-L)>>1;
+        int mid = L+((R-L)>>1);
         process(arr,L,mid);
         process(arr,mid+1,R);
         merge(arr,L,mid,R);
@@ -34,7 +34,7 @@ public class MergeSort_Code01 {
      *
      */
     private static void merge(int[] arr, int L, int M, int R) {
-        int[] help = new int[(R-L)+1];
+        int[] help = new int[R-L+1];
         int i = 0;
         int p1 = L;
         int p2 = M + 1;
@@ -47,7 +47,7 @@ public class MergeSort_Code01 {
         while (p2<=R){
             help[i++] = arr[p2++];
         }
-        for(i =0 ;i<arr.length;i++){
+        for(i = 0 ;i<help.length;i++){
             arr[L+i] = help[i];
         }
     }
@@ -68,11 +68,12 @@ public class MergeSort_Code01 {
             // 当前左组的，第一个位置
             int L = 0;
             while (L < N) {
-                if (mergeSize >= N - L) {
+                int M = L + mergeSize - 1; //左组最后一个位置
+                if (M >= N) { //如果左组都不够直接跳出
                     break;
                 }
-                int M = L + mergeSize - 1;
-                int R = M + Math.min(mergeSize, N - M - 1);
+                //算右组
+                int R =  Math.min(M + mergeSize, N-1 );
                 merge(arr, L, M, R);
                 L = R + 1;
             }
