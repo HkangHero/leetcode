@@ -5,11 +5,12 @@ package com.example.practise.basestructure_05;
  * @date: 2021/4/13 14:14
  * @desc: leetcode  https://leetcode-cn.com/problems/count-of-range-sum/
  *
+ * 以后可以用有序表
  * [i,j] 转变成 [0,j]  - [0,i]
  * 问题转换成 以i结尾的前缀和
  * arr[0.....17] 整体前缀和100，求在[60,90]
  * 求[0...16] 前缀和为70   求在[60,90]范围 转变成 [ 0....16] 前缀和在 [30,60],因为arr[17] = 30
- *  sum[]保存的是前缀和数组，sum[i] 代表的 i 之前有 落在 [arr[i] - up ,arr[i]-low]上
+ *  sum[]保存的是前缀和数组，sum[i] 代表的 i 之前有多少个落在 [arr[i] - up ,arr[i]-low]上
  *
  *
  *  eg: [3,4,8,10]  [5,7,10,12]   [-1,1]
@@ -50,7 +51,7 @@ public class Code_01CountOfRangeSum {
         for( int j = M+1; j <=R;j++){
             long min = arr[j ] - upper;
             long max = arr[j ] - lower;
-           //  [2,-1]
+           // 例如：要找的窗口范围是是 [2,-1]
             while (windowR <= M && arr[windowR] <= max){ // 小于等于2
                 windowR++;
             }
