@@ -13,17 +13,21 @@ public class Code_2PartitionAndQuickSort {
     }
 
     // arr[L..R]上，以arr[R]位置的数做划分值
-    // <= X > X
+    // <= X 在左边   >X 的在右边
     // <= X X
+
+    /**
+     * 从左边开始扩张，如果遇到<= 的 包括在最小边界中，如果遇到大的直接跳过，最后左边和R碰撞之后，只需要将做左边的下一位与R呼唤就可以保证R左边的都比R小与等于
+     */
     public static int partition(int[] arr, int L, int R) {
-        if (L > R) {
+        if (L > R) { // 越界 -1
             return -1;
         }
         if (L == R) {
             return L;
         }
-        int lessEqual = L - 1;
-        int index = L;
+        int lessEqual = L - 1; // 左边的边界
+        int index = L;//移动指针
         while (index < R) {
             if (arr[index] <= arr[R]) {
                 swap(arr, index, ++lessEqual);
@@ -36,8 +40,13 @@ public class Code_2PartitionAndQuickSort {
 
     // arr[L...R] 玩荷兰国旗问题的划分，以arr[R]做划分值
     // <arr[R] ==arr[R] > arr[R]
+
+    /**
+     * 上面的进阶版本，上面只能按照一个指标进行划分，稍微有点浪费，其实可以按照中间区域来划分，稍微强一点。
+     * 此函数返回的是一个 处于中间区间的下标
+     */
     public static int[] netherlandsFlag(int[] arr, int L, int R) {
-        if (L > R) { // L...R L>R
+        if (L > R) { // L...R L>R   越界
             return new int[] { -1, -1 };
         }
         if (L == R) {
@@ -93,13 +102,12 @@ public class Code_2PartitionAndQuickSort {
 
     // arr[L...R] 排有序，快排2.0方式
     public static void process2(int[] arr, int L, int R) {
-        if (L >= R) {
+        if(L > R){
             return;
         }
-        // [ equalArea[0]  ,  equalArea[0]]
-        int[] equalArea = netherlandsFlag(arr, L, R);
-        process2(arr, L, equalArea[0] - 1);
-        process2(arr, equalArea[1] + 1, R);
+        int [] e = netherlandsFlag(arr,L,R);//返回是两个下标 分别代表的是 处于中间状态的边界下标
+        process2(arr,L,e[0]-1);
+        process2(arr,e[1]+1,R);
     }
 
 
