@@ -3,7 +3,13 @@ package com.example.practise.basestructure_04;
 /**
  * @author:haokanghao
  * @date: 2021/4/12 20:23
- * @desc: 最小和问题
+ * @desc: 最小和问题 给定一个数组
+ * arr[4,7,6,2,9]
+ * 4：比4最小的和累加起来 0
+ * 7：比7最小的累加起来 4
+ * 6 比6最小的累加起来 4
+ * 2：比2最小的累加起来  0
+ * 9：比9左边最小的累加起来 4+7+6+2
  */
 public class MergeSort_Code02 {
     public static int smallSum(int[] arr) {
