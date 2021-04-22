@@ -15,14 +15,14 @@ public class Code01_LinkedListMid {
         }
     }
 
-    //找到中点   偶数返回的上一个  快指针先走 判断慢指针
+
     public static  int  findMid(Node head){
         Node  slow = head;
         Node  quick = head;
         while (quick!=null&&quick.next!=null){
-            slow = slow.next;
+            quick = quick.next;
             if(quick.next!=null){
-                quick = quick.next;
+                slow = slow.next;
                 quick = quick.next;
             }else{
                 break;
@@ -31,17 +31,13 @@ public class Code01_LinkedListMid {
       return slow.value;
     }
 
-    //找到中点   偶数返回的下一个  慢指针先走 在判断快指针
+    //找到中点   偶数返回的下一个  快慢指针先走一步 在判断快指针
     public static  int  findMid2(Node head){
         Node  slow = head;
         Node  quick = head;
         while (quick!=null&&quick.next!=null){
+            quick = quick.next;
             slow = slow.next;
-            if(quick.next!=null){
-                quick = quick.next;
-            }else{
-                break;
-            }
             if(quick.next!=null){
                 quick = quick.next;
             }else{
@@ -52,26 +48,45 @@ public class Code01_LinkedListMid {
     }
 
 
+    /**
+     *    规则： 快指针先走两个 如果在下一个不为空 慢指针的哨兵和慢指针才走
+     *    偶数返回的上中的前一个 奇数范围的是中间的前一个
+     */
 
     public static  int  findMid3(Node head){
-        if(head.next == null){
+        if(head.next == null&&head.next.next== null){
             return 0;
         }
         Node  slow = head;
-        Node  quick = head;
-        Node  shaobing = head.next;
-        while (quick!=null&&quick.next!=null){
-            if(shaobing.next!=null){
-                shaobing = shaobing.next;
-                slow = slow.next;
-            }
-            if(quick.next!=null){
-                quick = quick.next;
-            }else{
+        Node  quick = head.next;
+
+        while (quick!=null||quick.next.next!=null){
+                quick = quick.next.next;
+                if(quick!=null&&quick.next!=null){
+                    slow = slow.next;
+                }else{
                 break;
             }
+        }
+        return slow.value;
+    }
+
+    /**
+     *    规则：
+     *    偶数返回的下中的前一个 奇数范围的是中间的前一个
+     */
+
+    public static  int  findMid4(Node head){
+        if(head.next == null&&head.next.next== null){
+            return 0;
+        }
+        Node  slow = head;
+        Node  quick = head.next;
+        while (quick!=null&&quick.next!=null){
+            quick = quick.next;
             if(quick.next!=null){
                 quick = quick.next;
+                slow = slow.next;
             }else{
                 break;
             }
@@ -88,10 +103,13 @@ public class Code01_LinkedListMid {
         test.next.next.next.next.next = new Node(6);
         test.next.next.next.next.next.next = new Node(7);
         test.next.next.next.next.next.next.next = new Node(8);
-//        test.next.next.next.next.next.next.next.next = new Node(9);
-        int mid = findMid(test);
+        test.next.next.next.next.next.next.next.next = new Node(9);
 
+
+        System.out.println(findMid(test));
         System.out.println(findMid2(test));
+        System.out.println(findMid3(test));
+        System.out.println(findMid4(test));
 
     }
 
