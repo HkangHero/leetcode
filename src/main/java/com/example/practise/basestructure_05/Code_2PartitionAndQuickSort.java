@@ -17,7 +17,9 @@ public class Code_2PartitionAndQuickSort {
     // <= X X
 
     /**
-     * 从左边开始扩张，如果遇到<= 的 包括在最小边界中，如果遇到大的直接跳过，最后左边和R碰撞之后，只需要将做左边的下一位与R呼唤就可以保证R左边的都比R小与等于
+     * 从左边开始扩张，如果遇到<= 的 包括在最小边界中，
+     * 如果遇到大的直接跳过，最后左边和R碰撞之后，只需要将做左边的下一位与R呼唤就可以保证R左边的都比R小与等于
+     * R作为标杆值
      */
     public static int partition(int[] arr, int L, int R) {
         if (L > R) { // 越界 -1
