@@ -24,7 +24,7 @@ public class Code01_List {
            p1 = head;
            head = p2;
        }
-       return head;
+       return p1;
     }
 
     public static class DoubleNode {

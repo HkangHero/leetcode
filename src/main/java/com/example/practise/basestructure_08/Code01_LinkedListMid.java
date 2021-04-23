@@ -15,7 +15,7 @@ public class Code01_LinkedListMid {
         }
     }
 
-
+   //偶数返回上中点  4个 返回第2个，奇数返回中点
     public static  int  findMid(Node head){
         Node  slow = head;
         Node  quick = head;
@@ -31,7 +31,7 @@ public class Code01_LinkedListMid {
       return slow.value;
     }
 
-    //找到中点   偶数返回的下一个  快慢指针先走一步 在判断快指针
+    //偶数返回下中点  4个 返回第3个，奇数返回中点
     public static  int  findMid2(Node head){
         Node  slow = head;
         Node  quick = head;
@@ -49,7 +49,7 @@ public class Code01_LinkedListMid {
 
 
     /**
-     *    规则： 快指针先走两个 如果在下一个不为空 慢指针的哨兵和慢指针才走
+     *    规则： 快指针先走两个 如果在下一个不为空 慢指针才走
      *    偶数返回的上中的前一个 奇数范围的是中间的前一个
      */
 
@@ -60,13 +60,11 @@ public class Code01_LinkedListMid {
         Node  slow = head;
         Node  quick = head.next;
 
-        while (quick!=null||quick.next.next!=null){
+        while (quick.next!=null&&quick.next.next!=null){
                 quick = quick.next.next;
                 if(quick!=null&&quick.next!=null){
                     slow = slow.next;
-                }else{
-                break;
-            }
+                }
         }
         return slow.value;
     }
@@ -82,14 +80,9 @@ public class Code01_LinkedListMid {
         }
         Node  slow = head;
         Node  quick = head.next;
-        while (quick!=null&&quick.next!=null){
-            quick = quick.next;
-            if(quick.next!=null){
-                quick = quick.next;
-                slow = slow.next;
-            }else{
-                break;
-            }
+        while (quick.next!=null&&quick.next.next!=null){
+            quick = quick.next.next;
+            slow = slow.next;
         }
         return slow.value;
     }

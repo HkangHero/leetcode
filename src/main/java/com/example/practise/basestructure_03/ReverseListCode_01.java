@@ -19,7 +19,7 @@ public class ReverseListCode_01 {
     }
 
     /**
-     * 单链表反转
+     * 单链表反转  返回的是尾巴 不是head
      * @param head
      * @return
      */
