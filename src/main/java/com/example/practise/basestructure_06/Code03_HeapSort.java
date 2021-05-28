@@ -46,6 +46,7 @@ public class Code03_HeapSort {
         }
     }
 
+    // arr[index]位置的数，能否往下移动
     public  void heapify(int[] arr, int index, int heapSize) {
         int left = index * 2 + 1; // 左孩子的下标
         while (left < heapSize) { // 下方还有孩子的时候
